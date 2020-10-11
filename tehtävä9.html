@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Assignment 9</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+    <form id="mainform" onsubmit="results();">
+        <label for="nimi" id="name">Please write your name:</label>
+        <input type="text" name="name" autofocus>
+        <br>
+        <legend>How do you like your liver casserole?</legend>
+        <label for="With Raisins"><input type="radio" name="How do you like your liver casserole?" value="Raisins">With Raisins</label>
+        <label for="w/o raisins"><input type="radio" name="How do you like your liver casserole?" value="NoRaisins">Without Raisins</label>
+        <label for="With Ketchup"><input type="radio" name="How do you like your liver casserole?" value="Ketchup">With Ketchup</label>
+        <br>
+        <legend>What Sports do you follow?</legend>
+        <input type="checkbox" name="sports1" value="Icehockey">
+        <label for="sports1">Icehockey</label><br>
+        <input type="checkbox" name="sports2" value="Football">
+        <label for="sports2">Football</label><br>
+        <input type="checkbox" name="sports3" value="e-sport">
+        <label for="sports3">E-sports</label><br>
+        <input type="checkbox" name="sports4" value="N/A">
+        <label for="sports4">None above</label>
+        <br>
+        <br>
+        <label for="email">E-mail address:</label>
+        <input type="text" name="email" required>
+        <br>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" size="20" id="password" pattern="^[a-zA-Z0-9,._-]{8,30}$">
+        <label for="password">Confirm your password:</label>
+        <input type="password" size="20" id="confpassword" pattern="^[a-zA-Z0-9,._-]{8,30}$">
+        <input type="button" value="Validate" onclick="return Validate()" />
+        <br>
+        <br>
+        <label for="color">Select colour that matches your current mindset:</label>
+        <input type="color" name="favcolor" value="#ff0000">
+        <br>
+        <br>
+        <label for="birthday">Your Birthday:</label>
+        <input type="date" name="birthday">
+        <br>
+        <br>
+        <label for="wakeup">At what time you usually wake up?</label>
+        <input type="time" name="wakeup"><br>
+        <label for="height">Your height in cm:</label>
+        <input type="number" name="height" min="0" max="250"><br>
+        <label for="groceries">How much do spend in groceries per week:</label>
+        <input type="range" name="groceries" min="0" max="100" step="5" onchange="updateTextInput(this.value);">
+        <input type="text" id="textInput" value="">
+        <br>
+        <br>
+        <label for="phone">Enter your phone number:</label>
+        <input type="tel" name="phone" size="10" pattern="[0-9]{3}-[0-9]{7}" placeholder="040-1231234">
+        <br>
+        <br>
+        <label for="favpage">Your favorite news site (Don't say FOX):</label>
+        <input type="url" name="favpage" placeholder="http://www.somesite.com">
+        <br>
+        <br>
+        <legend>Where would you want to travel next?</legend>
+        <select name="country">
+        <optgroup label="Europe">
+        <option value="ger">Germany</option>
+        <option value="fra">France</option>
+        <option value="ita">Italy</option>
+        </optgroup>
+        <optgroup label="Asia">
+        <option value="th">Thailand</option>
+        <option value="mas">Malaysia</option>
+        <option value="chn">China</option>
+        </optgroup>
+        <optgroup label="American continent">
+        <option value="usa" selected>USA</option>
+        <option value="can">Canada</option>
+        <option value="mex">Mexico</option>
+        </optgroup>
+    </select>
+        <br>
+        <br>
+        <legend>Review of this form:</legend>
+        <textarea name="review" rows="4" cols="50">
+    </textarea>
+        <br>
+        <input type="submit" value="Submit" onclick="return Validate()">
+    </form>
+    <p id="answers"></p>
+    <script language="javascript">
+        function updateTextInput(val) {
+            document.getElementById("textInput").value = val;
+        }
+
+        function Validate() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confpassword").value;
+            if (password != confirmPassword) {
+                alert("Passwords do not match.");
+                return false;
+            }
+            return true;
+        }
+
+        function results() {
+            event.preventDefault();
+            var result = document.getElementById("mainform");
+            var text = "";
+            var i;
+            for (i = 0; i < result.length; i++) {
+                text += result[i].value + "<br>";
+            }
+            document.getElementById("answers").innerHTML = text;
+        }
+    </script>
+</body>
+
+</html>
